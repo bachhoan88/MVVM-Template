@@ -1,0 +1,4 @@
+package ${basePackage};
+
+interface BaseNavigator {
+}

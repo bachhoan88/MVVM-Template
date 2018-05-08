@@ -1,0 +1,69 @@
+<template 
+	format="5" 
+	revision="6"
+	minApi="16"
+	minBuildApi="23" 
+	name="MVVM Activity"
+	description="Creates a new basic activity that has already Basic code">
+
+	<category value="Activity" />
+	<formfactor value="Mobile" />
+	
+	<parameter 
+			id="className" 
+			name="Activity Name" 
+			type="string"
+			default="MainActivity"
+			constraints="class|unique|nonempty" 
+			help="The name of the Activity" />
+	
+	<parameter
+	        id="Name"
+	        name="name"
+	        type="string"
+	        constraints="class|nonempty|unique"
+	        default="Main"
+	        visibility="false"
+	        suggest="${underscoreToCamelCase(classToResource(className))}"
+        	help="The name of the Activity to create" />
+
+	<parameter 
+			id="activityLayoutName" 
+			name="Activity Layout Name"
+			type="string" 
+			constraints="layout|unique|nonempty" 
+			suggest="activity_${classToResource(className)}"
+			default="activity_main" 
+			help="The name of the layout to create for the activity" />
+			
+	<parameter 
+			id="applicationName" 
+			name="Application Name" 
+			type="string"
+			default="MainApplication"
+			constraints="class|unique|nonempty" 
+			help="The name of the Application" />				
+			
+    <parameter
+            id="useFragment"
+            name="Use a Fragment"
+            type="boolean"
+            default="false"
+            help="If true, the content will be a fragment"/>
+            
+	<parameter
+            id="isLauncher"
+            name="Launcher Activity"
+            type="boolean"
+            default="false"
+            help="If true, this activity will have a CATEGORY_LAUNCHER intent filter, making it visible in the launcher"/>
+
+		<!-- 128x128 thumb relative to template.xml -->
+	<thumbs>
+		<!-- default thumb is required -->
+		<thumb>template_mvvm_project.png</thumb>
+	</thumbs>
+
+	<globals file="globals.xml.ftl" />
+	<execute file="recipe.xml.ftl" />
+</template>
