@@ -7,4 +7,5 @@
     <global id="srcOut" value="${srcDir}/${slashedPackageName(packageName)}" />
     <global id="mainPackage" value="<#if isNewProject>${packageName}<#else>${applicationPackage}</#if>.ui.${classToResource(className)}" />
     <global id="basePackage" value="<#if isNewProject>${packageName}<#else>${applicationPackage}</#if>.ui.base" />
+    <global id="appPack" value="<#if isNewProject>${packageName}<#else>${applicationPackage}</#if>" />
 </globals>

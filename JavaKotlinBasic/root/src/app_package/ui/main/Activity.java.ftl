@@ -1,9 +1,9 @@
 package ${mainPackage};
 
 import javax.inject.Inject;
-import <#if isNewProject>${packageName}<#else>${applicationPackage}</#if>.databinding.Activity${Name}Binding;
-import <#if isNewProject>${packageName}<#else>${applicationPackage}</#if>.BR;
-import <#if isNewProject>${packageName}<#else>${applicationPackage}</#if>.R;
+import ${appPack}.databinding.Activity${Name}Binding;
+import ${appPack}.BR;
+import ${appPack}.R;
 
 import ${basePackage}.BaseActivity;
 import android.arch.lifecycle.ViewModelProvider;

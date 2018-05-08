@@ -1,7 +1,7 @@
 package ${mainPackage};
 
-import <#if isNewProject>${packageName}<#else>${applicationPackage}</#if>.data.DataManager;
-import <#if isNewProject>${packageName}<#else>${applicationPackage}</#if>.rx.SchedulerProvider;
+import ${appPack}.data.DataManager;
+import ${appPack}.rx.SchedulerProvider;
 import ${basePackage}.BaseViewModel;
 
 import android.support.annotation.NonNull;
