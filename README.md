@@ -1,4 +1,4 @@
-# Android-Studio-MVVM-DataBinding-Dagger-Template-Google-Architecture
+# Android-Studio-MVVM-DataBinding-Dagger-Template-Google-Architecture (Java & Kotlin)
 
 This is an Android Studio template for MVVM; the template is inspired by [google samples/ android architecture](https://github.com/googlesamples/android-architecture/tree/todo-mvvm-databinding/)
 
@@ -91,24 +91,26 @@ The main idea of the base classes is to have common methods that share across th
 Code Basic
 - BaseActivity
 ```
-public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel> extends AppCompatActivity
-        implements BaseFragment.Callback {
+abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(), BaseFragment.Callback {
+
+    var viewDataBinding: T? = null
+        private set
+    private var mViewModel: V? = null
 
     ...
-    public T getViewDataBinding() {
-        return mViewDataBinding;
+    @get:LayoutRes
+    abstract val layoutId: Int
+    
+	...    
+    private fun performDataBinding() {
+        viewDataBinding = DataBindingUtil.setContentView(this, layoutId)
+        this.mViewModel = if (mViewModel == null) viewModel else mViewModel
+        viewDataBinding!!.setVariable(bindingVariable, mViewModel)
+        viewDataBinding!!.executePendingBindings()
     }
 
-    public abstract V getViewModel();
-
-    public abstract int getBindingVariable();
-
-    public abstract
-    @LayoutRes
-    int getLayoutId();
-
-    public void performDependencyInjection() {
-        AndroidInjection.inject(this);
+    fun performDependencyInjection() {
+        AndroidInjection.inject(this)
     }
 }
 ```
@@ -116,76 +118,63 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
 - BaseFragment
 ```
 public abstract V getViewModel();
+abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragment() {
 
-    public abstract int getBindingVariable();
-
-    public abstract
-    @LayoutRes
-    int getLayoutId();
-
-    public interface Callback {
-
-        void onFragmentAttached();
-
-        void onFragmentDetached(String tag);
+    var baseActivity: BaseActivity<*, *>? = null
+        private set
+    var viewDataBinding: T? = null
+        private set
+    private var mViewModel: V? = null
+    private var mRootView: View? = null
+    
+    @get:LayoutRes
+    abstract val layoutId: Int
+    
+    private fun performDependencyInjection() {
+        AndroidSupportInjection.inject(this)
     }
+
+    interface Callback {
+
+        fun onFragmentAttached()
+
+        fun onFragmentDetached(tag: String)
+    }
+}
 
 ```
 
 - BaseViewModel
 ```
-public abstract class BaseViewModel<N> extends ViewModel {
+abstract class BaseViewModel<N>(val dataManager: DataManager,
+                                val schedulerProvider: SchedulerProvider) : ViewModel() {
+    val isLoading = ObservableBoolean(false)
+    var navigator: N? = null
+    val compositeDisposable: CompositeDisposable
 
-    private final DataManager mDataManager;
-    private final SchedulerProvider mSchedulerProvider;
-    private N mNavigator;
-    private CompositeDisposable mCompositeDisposable;
-
-    public BaseViewModel(DataManager dataManager,
-                         SchedulerProvider schedulerProvider) {
-        this.mDataManager = dataManager;
-        this.mSchedulerProvider = schedulerProvider;
-        this.mCompositeDisposable = new CompositeDisposable();
+    init {
+        this.compositeDisposable = CompositeDisposable()
     }
 
-    public N getNavigator() {
-        return mNavigator;
+    fun setIsLoading(isLoading: Boolean) {
+        this.isLoading.set(isLoading)
     }
 
-    public void setNavigator(N navigator) {
-        this.mNavigator = navigator;
-    }
-
-    public DataManager getDataManager() {
-        return mDataManager;
-    }
-
-    public SchedulerProvider getSchedulerProvider() {
-        return mSchedulerProvider;
-    }
-
-    public CompositeDisposable getCompositeDisposable() {
-        return mCompositeDisposable;
-    }
-
-    @Override
-    protected void onCleared() {
-        mCompositeDisposable.dispose();
-        super.onCleared();
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 }
+
 
 ```
 
 - BaseViewHolder for ```RecycleView.Adapter```
 ```
-public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
-    public BaseViewHolder(View itemView) {
-        super(itemView);
-    }
-
-    public abstract void onBind(int position);
+abstract class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    abstract fun onBind(position: Int)
 }
+
 
 ```
 #### 2. Create Activity MVVM template
