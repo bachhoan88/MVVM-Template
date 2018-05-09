@@ -1,7 +1,7 @@
 package ${packageName}.di.builder;
 
-import ${mainPackage}.MainActivity;
-import ${mainPackage}.MainActivityModule;
+import ${mainPackage}.${Name}Activity;
+import ${mainPackage}.${Name}ActivityModule;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
