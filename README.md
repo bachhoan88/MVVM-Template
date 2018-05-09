@@ -5,7 +5,7 @@ This is an Android Studio template for MVVM; the template is inspired by [google
 `Important`: The main goal of this template is to speed up the development process using android MVVM template. This is just a template and basic code, so feel free to make changes according to your needs. It also shows how to create a set of files using template files in Android Studio. This template was successfully tested with Android 3.1.1.
 
 ## Demo
-![Create MVVM template](demo/out2.mp4 "Create MVVM template")
+![Create MVVM template](demo/out2.gif "Create MVVM template")
 
 ## Code Quality
 
@@ -189,7 +189,7 @@ public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
 ```
 #### 2. Create Activity MVVM template
-![Create MVVM template](demo/out1.mp4 "Create MVVM template")
+![Create MVVM template](demo/out1.gif "Create MVVM template")
 
 
 Support
