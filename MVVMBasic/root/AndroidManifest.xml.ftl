@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"</#if>>
         <activity
-            android:name="${packageName}.ui.${classToResource(className)}.${className}"
+            android:name="${appPack}.ui.${classToResource(className)}.${className}"
             android:label="@string/app_name" >
             <#if isLauncher!false>
             <intent-filter>

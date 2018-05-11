@@ -76,11 +76,11 @@ Just run the install script at the root of this repository:
 
 - Manual installation:
 
-Just copy directory `MVVMTemplate/*` to `$ANDROID_STUDIO_FOLDER$/Contents/plugins/android/lib/templates/activities/`
+Just copy directory `MVVMBasic` to `$ANDROID_STUDIO_FOLDER$/Contents/plugins/android/lib/templates/activities/`
 
 #### For Windows:
 
-Just copy directory `MVVMTemplate/*` to `$ANDROID_STUDIO_FOLDER$\plugins\android\lib\templates\activities\`
+Just copy directory `MVVMBasic` to `$ANDROID_STUDIO_FOLDER$\plugins\android\lib\templates\activities\`
 
 ## How to use
 

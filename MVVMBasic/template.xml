@@ -1,0 +1,117 @@
+<template 
+	format="5" 
+	revision="6"
+	minApi="16"
+	minBuildApi="23" 
+	name="MVVM Component"
+	description="Creates a new basic code of component such as Activity, Fragment, ViewHolder">
+
+	<category value="Activity" />
+	<formfactor value="Mobile" />
+	
+	<parameter
+            id="componentType"
+            name="Component Option"
+            type="enum"
+            default="type_activity"
+            help="Select type of Component (Importatn: Create New Project working only type Activity)" >
+            <option id="type_activity">Activity</option>
+            <option id="type_fragment">Fragment</option>
+            <option id="type_holder">View Holder</option>
+    </parameter>
+    
+<!-- Start Type Activity -->    
+	<parameter 
+			id="className" 
+			name="Activity Name" 
+			type="string"
+			default="MainActivity"
+			constraints="class|unique|nonempty" 
+			visibility="(componentType=='type_activity')"
+			help="The name of the Activity" />
+			
+	<parameter
+	        id="Name"
+	        name="name"
+	        type="string"
+	        constraints="class|nonempty|unique"
+	        default="Main"
+	        visibility="false"
+	        suggest="${underscoreToCamelCase(classToResource(className))}"
+        	help="The name of the Activity to create" />
+
+	<parameter 
+			id="activityLayoutName" 
+			name="Activity Layout Name"
+			type="string" 
+			constraints="layout|unique|nonempty" 
+			suggest="activity_${classToResource(className)}"
+			default="activity_main" 
+			visibility="(componentType=='type_activity')"
+			help="The name of the layout to create for the activity" />
+			
+	<parameter 
+			id="applicationName" 
+			name="Application Name" 
+			type="string"
+			visibility="(componentType=='type_activity')"
+			default="MainApplication"
+			constraints="class|unique|nonempty" 
+			help="The name of the Application " />				
+            
+	<parameter
+            id="isLauncher"
+            name="Launcher Activity"
+            type="boolean"
+            visibility="(componentType=='type_activity')"
+            default="false"
+            help="If true, this activity will have a CATEGORY_LAUNCHER intent filter, making it visible in the launcher"/>
+
+<!-- End Type Activity -->            
+
+
+<!-- Start Type Fragment -->
+	<parameter 
+			id="fragmentClassName" 
+			name="Fragment Name" 
+			type="string"
+			default="MainFragment"
+			constraints="class|unique|nonempty" 
+			visibility="(componentType=='type_fragment')"
+			help="The name of the Fragment" />
+			
+	<parameter
+	        id="fragmentName"
+	        name="name"
+	        type="string"
+	        constraints="class|nonempty|unique"
+	        default="Main"
+	        visibility="false"
+	        suggest="${underscoreToCamelCase(classToResource(fragmentClassName))}"
+        	help="The name of the Fragment to create" />
+
+	<parameter 
+			id="fragmentLayoutName" 
+			name="Fragment Layout Name"
+			type="string" 
+			constraints="layout|unique|nonempty" 
+			suggest="fragment_${classToResource(fragmentClassName)}"
+			default="fragment_main" 
+			visibility="(componentType=='type_fragment')"
+			help="The name of the layout to create for the fragment" />
+			
+			
+<!-- End Type Fragment -->			
+
+		<!-- 128x128 thumb relative to template.xml -->
+	<thumbs>
+		<!-- default thumb is required -->
+		<thumb>template.png</thumb>
+		<thumb componentType="type_activity">activity.png</thumb>
+		<thumb componentType="type_fragment">fragment.png</thumb>
+		<thumb componentType="type_holder">holder.png</thumb>
+	</thumbs>
+
+	<globals file="globals.xml.ftl" />
+	<execute file="recipe.xml.ftl" />
+</template>
