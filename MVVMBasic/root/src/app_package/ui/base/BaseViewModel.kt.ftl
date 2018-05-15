@@ -10,13 +10,9 @@ import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseViewModel<N>(val dataManager: DataManager,
                                 val schedulerProvider: SchedulerProvider) : ViewModel() {
-    val isLoading = ObservableBoolean(false)
+    private val isLoading = ObservableBoolean(false)
+    private val compositeDisposable = CompositeDisposable()
     var navigator: N? = null
-    val compositeDisposable: CompositeDisposable
-
-    init {
-        this.compositeDisposable = CompositeDisposable()
-    }
 
     fun setIsLoading(isLoading: Boolean) {
         this.isLoading.set(isLoading)

@@ -1,6 +1,5 @@
 package ${packageName}
 
-
 import android.app.Activity
 import android.app.Application
 import ${packageName}.di.component.DaggerAppComponent
@@ -12,8 +11,7 @@ import javax.inject.Inject
 class ${applicationName} : Application(), HasActivityInjector {
 
     @Inject
-    lateinit var
-            activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity?>
+    lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity?>
 
     override fun activityInjector(): AndroidInjector<Activity?>? {
         return activityDispatchingAndroidInjector

@@ -1,9 +1,9 @@
 package ${fragmentPackage};
 
-import ${appPack}.data.AppDataManager;
-import ${appPack}.rx.SchedulerProvider;
 import dagger.Module;
 import dagger.Provides;
+import ${appPack}.data.AppDataManager;
+import ${appPack}.rx.SchedulerProvider;
 
 @Module
 public class ${fragmentName}FragmentModule {
