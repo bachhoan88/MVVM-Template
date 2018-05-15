@@ -17,10 +17,8 @@ import dagger.android.support.AndroidSupportInjection
 
 abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragment() {
 
-    var baseActivity: BaseActivity<*, *>? = null
-        private set
-    var viewDataBinding: T? = null
-        private set
+    private var baseActivity: BaseActivity<*, *>? = null
+    private var viewDataBinding: T? = null
     private var mViewModel: V? = null
     private var mRootView: View? = null
 

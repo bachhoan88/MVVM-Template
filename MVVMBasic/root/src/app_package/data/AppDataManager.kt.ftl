@@ -11,7 +11,7 @@ import javax.inject.Singleton
 class AppDataManager @Inject constructor(
         private val mContext: Context,
         private val mPreferencesHelper: PreferencesHelper,
-        mApiHelper: ApiHelper
+        private val mApiHelper: ApiHelper
 ) : DataManager {
 
     override fun isFirstRun(): Boolean {

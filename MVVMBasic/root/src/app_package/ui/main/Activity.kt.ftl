@@ -15,7 +15,7 @@ class ${Name}Activity : BaseActivity<Activity${Name}Binding, ${Name}ViewModel>()
 	var viewModelFactory: ViewModelProvider.Factory? = null
         @Inject set
     
-    var activity${Name}Binding: Activity${Name}Binding? = null
+    private var activity${Name}Binding: Activity${Name}Binding? = null
     private var m${Name}ViewModel: ${Name}ViewModel? = null
     
     override val viewModel: ${Name}ViewModel

@@ -37,7 +37,6 @@
 		
 		<mkdir at="${escapeXmlAttribute(srcOut)}/ui"/>
 		<mkdir at="${escapeXmlAttribute(srcOut)}/ui/base"/>
-		<mkdir at="${escapeXmlAttribute(srcOut)}/ui/custom"/>
 	
 		<merge from="root/build.gradle.ftl" 
 			to="${escapeXmlAttribute(projectOut)}/build.gradle" />

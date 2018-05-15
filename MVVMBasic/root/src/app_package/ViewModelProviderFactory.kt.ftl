@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModelProvider
 class ViewModelProviderFactory<V : Any>(private val viewModel: V) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-
+        @Suppress("UNCHECKED_CAST")
         if (modelClass.isAssignableFrom(viewModel.javaClass)) {
             return viewModel as T
         }
